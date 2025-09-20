@@ -1,3 +1,11 @@
+
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A collaborative work environment with students and professionals.",
+      "imageUrl": "https://picsum.photos/seed/hero/1200/600",
+      "imageHint": "collaboration students"
+    }
+  ]
 }
