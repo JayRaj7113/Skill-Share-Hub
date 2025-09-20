@@ -90,7 +90,7 @@ export default function ProjectForm() {
                 <FormItem>
                   <FormLabel>Reward</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., $2,500 or Mentorship" {...field} />
+                    <Input placeholder="e.g., ₹2,500 or Mentorship" {...field} />
                   </FormControl>
                   <FormDescription>
                     What will the student receive for completing the project?

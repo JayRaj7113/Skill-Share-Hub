@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { projects } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, DollarSign, Award, Target } from 'lucide-react';
+import { Calendar, Users, Award, Target } from 'lucide-react';
 import SubmissionForm from '@/components/projects/submission-form';
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
@@ -66,7 +66,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start gap-3">
-                <DollarSign className="h-5 w-5 mt-1 text-primary" />
+                <span className="font-bold text-primary mt-1">₹</span>
                 <div>
                   <p className="font-semibold">Reward</p>
                   <p className="text-muted-foreground">{project.reward}</p>
@@ -83,6 +83,13 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                       day: 'numeric',
                     })}
                   </p>
+                </div>
+              </div>
+               <div className="flex items-start gap-3">
+                <Users className="h-5 w-5 mt-1 text-primary" />
+                <div>
+                  <p className="font-semibold">Submissions</p>
+                  <p className="text-muted-foreground">{project.submissions} received</p>
                 </div>
               </div>
             </CardContent>

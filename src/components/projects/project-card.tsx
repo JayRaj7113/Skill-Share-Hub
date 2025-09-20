@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/lib/types';
-import { Calendar, DollarSign } from 'lucide-react';
+import { Calendar, Users } from 'lucide-react';
 
 type ProjectCardProps = {
   project: Project;
@@ -37,6 +37,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </div>
             </div>
           </div>
+          <div className="flex justify-between text-sm text-muted-foreground pt-2">
+            <div className="flex items-center">
+              <span>{project.reward}</span>
+            </div>
+            <div className="flex items-center">
+              <Users className="h-4 w-4 mr-1" />
+              <span>{project.submissions} submissions</span>
+            </div>
+          </div>
         </CardHeader>
         <Link href={`/projects/${project.id}`} className="block flex-grow">
             <CardContent className="flex-grow">
@@ -49,14 +58,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </CardContent>
         </Link>
         <Link href={`/projects/${project.id}`} className="block">
-            <CardFooter className="flex justify-between text-sm text-muted-foreground">
-            <div className="flex items-center">
-                <DollarSign className="h-4 w-4 mr-1" />
-                <span>{project.reward}</span>
-            </div>
-            <div className="flex items-center">
+            <CardFooter>
+            <div className="flex items-center text-sm text-muted-foreground">
                 <Calendar className="h-4 w-4 mr-1" />
-                <span>{new Date(project.deadline).toLocaleDateString()}</span>
+                <span>Deadline: {new Date(project.deadline).toLocaleDateString()}</span>
             </div>
             </CardFooter>
         </Link>

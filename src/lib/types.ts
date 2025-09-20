@@ -7,6 +7,7 @@ export type Project = {
   requirements: string[];
   companyName: string;
   companyLogoUrl: string;
+  submissions: number;
 };
 
 export type Student = {

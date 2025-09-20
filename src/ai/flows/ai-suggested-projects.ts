@@ -26,7 +26,8 @@ const ProjectSchema = z.object({
   description: z.string().describe('A detailed description of the project.'),
   deadline: z.string().describe('The deadline for the project.'),
   reward: z.string().describe('The reward for completing the project.'),
-  requirements: z.array(z.string()).describe('The requirements for the project.')
+  requirements: z.array(z.string()).describe('The requirements for the project.'),
+  submissions: z.number().describe('The number of submissions for the project.')
 });
 
 const SuggestProjectsInputSchema = z.object({
@@ -75,6 +76,7 @@ const suggestProjectsPrompt = ai.definePrompt({
   Deadline: {{{this.deadline}}}
   Reward: {{{this.reward}}}
   Requirements: {{#each this.requirements}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}
+  Submissions: {{{this.submissions}}}
 
   {{/each}}
 
@@ -94,6 +96,8 @@ const suggestProjectsPrompt = ai.definePrompt({
       "description": "{{{this.description}}}",
       "deadline": "{{{this.deadline}}}",
       "reward": "{{{this.reward}}}",
+      "requirements": [{{#each this.requirements}}"{{{this}}}"{{#unless @last}},{{/unless}}{{/each}}],
+      "submissions": {{{this.submissions}}}
     },
     "matchScore": 0.8,
     "justification": "This project aligns well with your skills and interests."
