@@ -4,7 +4,7 @@ import { projects } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, DollarSign, Award, Target } from 'lucide-react';
-import InterestButton from '@/components/projects/interest-button';
+import SubmissionForm from '@/components/projects/submission-form';
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const project = projects.find((p) => p.id === params.id);
@@ -87,7 +87,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               </div>
             </CardContent>
           </Card>
-          <InterestButton />
+          <SubmissionForm />
         </div>
       </div>
     </div>
