@@ -13,7 +13,7 @@ export default function SignupPage() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
         <Link href="/register">
-          <Card className="h-full flex flex-col items-center justify-center text-center p-8 hover:shadow-xl hover:border-primary transition-all">
+          <Card className="h-full flex flex-col items-center justify-center text-center p-8 hover:shadow-xl hover:border-primary hover:bg-primary/5 transition-all">
             <GraduationCap className="h-16 w-16 text-primary mb-4" />
             <CardHeader>
               <CardTitle className="text-2xl">I'm a Student</CardTitle>
@@ -25,7 +25,7 @@ export default function SignupPage() {
           </Card>
         </Link>
         <Link href="/register/company">
-          <Card className="h-full flex flex-col items-center justify-center text-center p-8 hover:shadow-xl hover:border-primary transition-all">
+          <Card className="h-full flex flex-col items-center justify-center text-center p-8 hover:shadow-xl hover:border-primary hover:bg-primary/5 transition-all">
             <Briefcase className="h-16 w-16 text-primary mb-4" />
             <CardHeader>
               <CardTitle className="text-2xl">I'm a Company</CardTitle>
