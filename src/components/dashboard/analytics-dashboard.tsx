@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Lightbulb, Building, Route, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap, Lightbulb, Building, Route, Sparkles, GraduationCap, Briefcase, Handshake } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { suggestCareerPath, CareerPathInput, CareerPathOutput } from '@/ai/flows/career-suggester';
@@ -106,19 +106,23 @@ export default function AnalyticsDashboard() {
   };
 
   const renderLoading = () => (
-    <div className="text-center space-y-4 py-8">
-        <Sparkles className="h-10 w-10 text-primary mx-auto animate-pulse" />
-        <p className="font-semibold text-lg">AI Career Counselor is thinking...</p>
-        <p className="text-muted-foreground">Generating a personalized career path for you.</p>
-        <div className="space-y-4 pt-4">
-            <Skeleton className="h-8 w-3/4 mx-auto" />
-            <Skeleton className="h-6 w-1/2 mx-auto" />
-            <div className="flex justify-center gap-4 pt-2">
-                <Skeleton className="h-8 w-24" />
-                <Skeleton className="h-8 w-24" />
-                <Skeleton className="h-8 w-24" />
+    <div className="text-center space-y-6 py-8 flex flex-col items-center">
+        <div className="relative w-32 h-12 overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-between">
+            <div className="animate-[student-walk_2s_ease-in-out_infinite] p-2 bg-secondary rounded-full">
+              <GraduationCap className="w-6 h-6 text-secondary-foreground" />
             </div>
+            <div className="animate-[company-appear_2s_ease-in-out_infinite] p-2 bg-primary rounded-full">
+                <Briefcase className="w-6 h-6 text-primary-foreground" />
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-[handshake_2s_ease-in-out_infinite]">
+              <Handshake className="w-8 h-8 text-accent-foreground" />
+            </div>
+          </div>
         </div>
+        <p className="font-semibold text-lg animate-pulse">AI is generating your career path...</p>
     </div>
   );
 
