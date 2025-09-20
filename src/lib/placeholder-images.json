@@ -6,6 +6,36 @@
       "description": "A collaborative work environment with students and professionals.",
       "imageUrl": "https://picsum.photos/seed/hero/1200/600",
       "imageHint": "collaboration students"
+    },
+    {
+      "id": "how-it-works-1",
+      "description": "A student creating their dynamic profile.",
+      "imageUrl": "https://picsum.photos/seed/hiw1/600/400",
+      "imageHint": "student profile"
+    },
+    {
+      "id": "how-it-works-2",
+      "description": "A company posting a new project.",
+      "imageUrl": "https://picsum.photos/seed/hiw2/600/400",
+      "imageHint": "project planning"
+    },
+    {
+      "id": "how-it-works-3",
+      "description": "A student completing a project on their laptop.",
+      "imageUrl": "https://picsum.photos/seed/hiw3/600/400",
+      "imageHint": "student coding"
+    },
+    {
+      "id": "for-students",
+      "description": "A group of diverse students collaborating.",
+      "imageUrl": "https://picsum.photos/seed/students/600/400",
+      "imageHint": "students collaborating"
+    },
+    {
+      "id": "for-companies",
+      "description": "Professionals in a modern office.",
+      "imageUrl": "https://picsum.photos/seed/companies/600/400",
+      "imageHint": "professional office"
     }
   ]
 }
