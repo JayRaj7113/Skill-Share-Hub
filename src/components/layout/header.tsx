@@ -7,8 +7,8 @@ import { Menu } from 'lucide-react';
 export default function Header() {
   const navLinks = [
     { href: '/projects', label: 'Browse Projects' },
-    { href: '/students/search', label: 'Find a Student' },
-    { href: '/dashboard', label: 'Dashboard' },
+    { href: '/students/search', label: 'Recruiters Panel' },
+    { href: '/dashboard', label: 'Career Counselor' },
   ];
 
   return (
