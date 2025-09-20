@@ -23,6 +23,9 @@ export default function Header() {
               <Link href="/projects">Browse Projects</Link>
             </Button>
             <Button variant="ghost" asChild>
+              <Link href="/students/search">Find a Student</Link>
+            </Button>
+            <Button variant="ghost" asChild>
               <Link href="/dashboard">Dashboard</Link>
             </Button>
              <Button variant="ghost" asChild>
