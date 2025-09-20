@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { technologyTrends } from '@/lib/dashboard-data';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Lightbulb, Briefcase, Building, Route, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap, Lightbulb, Building, Route, Sparkles } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { suggestCareerPath, CareerPathInput, CareerPathOutput } from '@/ai/flows/career-suggester';
@@ -39,11 +37,6 @@ export default function AnalyticsDashboard() {
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<CareerPathOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  const chartData = technologyTrends.map(tech => ({
-    name: tech.name,
-    postings: tech.postings,
-  }));
 
   const handleAnswer = (question: keyof CareerPathInput, value: string) => {
     setAnswers(prev => ({ ...prev, [question]: value }));
@@ -184,48 +177,21 @@ export default function AnalyticsDashboard() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div className="lg:col-span-3">
-         <Card className="bg-secondary/30">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                    <Lightbulb className="h-6 w-6 text-primary"/>
-                    <span>Discover Your Path</span>
-                </CardTitle>
-                <CardDescription>Answer a couple of questions to get a personalized, AI-driven career recommendation.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                {step < 2 && !loading && renderQuiz()}
-                {loading && renderLoading()}
-                {step === 2 && !loading && renderRecommendation()}
-            </CardContent>
-        </Card>
-      </div>
-
-      <div className="lg:col-span-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>In-Demand Technologies</CardTitle>
-            <CardDescription>Based on the number of project postings across the platform.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: 'hsl(var(--background))',
-                    borderColor: 'hsl(var(--border))',
-                  }}
-                />
-                <Bar dataKey="postings" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      </div>
+    <div className="space-y-8">
+      <Card className="bg-secondary/30">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+                <Lightbulb className="h-6 w-6 text-primary"/>
+                <span>Discover Your Path</span>
+            </CardTitle>
+            <CardDescription>Answer a couple of questions to get a personalized, AI-driven career recommendation.</CardDescription>
+        </CardHeader>
+        <CardContent>
+            {step < 2 && !loading && renderQuiz()}
+            {loading && renderLoading()}
+            {step === 2 && !loading && renderRecommendation()}
+        </CardContent>
+      </Card>
     </div>
   );
 }
