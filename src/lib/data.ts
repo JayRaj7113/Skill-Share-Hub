@@ -2,31 +2,37 @@ import type { Project, Student } from './types';
 
 export const students: Student[] = [
   {
-    id: 'ana-garcia',
+    id: '123AB',
     name: 'Ana Garcia',
     email: 'ana.garcia@university.edu',
     college: 'Stanford University',
     bio: 'CS student passionate about AI and machine learning. Eager to apply my skills to solve real-world problems and contribute to innovative projects.',
     skills: ['Python', 'TensorFlow', 'PyTorch', 'Data Analysis', 'NLP'],
     avatarUrl: 'https://picsum.photos/seed/student1/200/200',
+    cgpa: '3.9',
+    achievements: ['Dean\'s List 2023', 'Winner, University Hackathon 2024'],
   },
   {
-    id: 'james-smith',
+    id: '456CD',
     name: 'James Smith',
     email: 'james.smith@stateu.edu',
     college: 'MIT',
     bio: 'Frontend developer with a keen eye for design and user experience. Proficient in React and modern JavaScript frameworks.',
     skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Figma'],
     avatarUrl: 'https://picsum.photos/seed/student2/200/200',
+    cgpa: '3.7',
+    achievements: ['Best Design Award, Annual Design Fair', 'Published 3 articles on UX principles'],
   },
   {
-    id: 'priya-patel',
+    id: '789EF',
     name: 'Priya Patel',
     email: 'priya.patel@tech.edu',
     college: 'Carnegie Mellon University',
     bio: 'Backend engineering enthusiast specializing in distributed systems and cloud computing. Always ready for a challenge.',
     skills: ['Go', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL'],
     avatarUrl: 'https://picsum.photos/seed/student3/200/200',
+    cgpa: '3.85',
+    achievements: ['Certified Kubernetes Administrator (CKA)', 'Speaker at CloudConf 2024'],
   },
 ];
 

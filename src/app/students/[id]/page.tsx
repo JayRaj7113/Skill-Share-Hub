@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { students } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, GraduationCap, Code } from 'lucide-react';
+import { Mail, GraduationCap, Code, Star, Trophy } from 'lucide-react';
 import SuggestedProjects from '@/components/ai/suggested-projects';
 import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -30,10 +30,18 @@ export default function StudentProfilePage({ params }: { params: { id: string } 
             />
           </div>
           <div className="pt-20 pb-6 px-6">
-            <h1 className="text-3xl font-bold">{student.name}</h1>
-            <p className="text-muted-foreground">{student.bio}</p>
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-3xl font-bold">{student.name}</h1>
+                <p className="text-muted-foreground">{student.bio}</p>
+              </div>
+               <div className="text-right flex-shrink-0">
+                <p className="font-bold text-lg">Unique ID</p>
+                <Badge variant="default" className="text-base font-mono tracking-widest">{student.id}</Badge>
+              </div>
+            </div>
           </div>
-          <div className="border-t px-6 py-4 space-y-4">
+          <div className="border-t px-6 py-4 grid grid-cols-1 md:grid-cols-3 gap-4">
              <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <Mail className="h-4 w-4" />
               <span>{student.email}</span>
@@ -42,12 +50,16 @@ export default function StudentProfilePage({ params }: { params: { id: string } 
               <GraduationCap className="h-4 w-4" />
               <span>{student.college}</span>
             </div>
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <Star className="h-4 w-4" />
+              <span>CGPA: {student.cgpa} / 4.0</span>
+            </div>
           </div>
         </CardContent>
       </Card>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 space-y-8">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -61,6 +73,21 @@ export default function StudentProfilePage({ params }: { params: { id: string } 
                   {skill}
                 </Badge>
               ))}
+            </CardContent>
+          </Card>
+           <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Trophy className="h-6 w-6" />
+                <span>Achievements</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 list-disc list-inside text-muted-foreground">
+                {student.achievements.map((achievement, index) => (
+                    <li key={index}>{achievement}</li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
         </div>

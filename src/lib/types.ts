@@ -17,4 +17,6 @@ export type Student = {
   bio: string;
   skills: string[];
   avatarUrl: string;
+  cgpa: string;
+  achievements: string[];
 };

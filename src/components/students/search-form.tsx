@@ -15,7 +15,7 @@ export default function SearchForm() {
       <CardHeader>
         <CardTitle>Student Search</CardTitle>
         <CardDescription>
-          Example IDs: ana-garcia, james-smith, priya-patel
+          Example IDs: 123AB, 456CD, 789EF
         </CardDescription>
       </CardHeader>
       <form action={formAction}>
@@ -25,7 +25,8 @@ export default function SearchForm() {
             <Input 
               name="studentId" 
               placeholder="Enter student ID..." 
-              className="pl-10"
+              className="pl-10 font-mono tracking-widest"
+              maxLength={5}
             />
           </div>
           {state?.errors?.studentId && (
