@@ -14,19 +14,23 @@ const careerQuizQuestions = {
   interest: {
     prompt: 'What kind of activities do you enjoy most?',
     options: [
-      { label: 'Building & creating things', value: 'build' },
-      { label: 'Solving complex puzzles & problems', value: 'solve' },
-      { label: 'Designing & visualizing ideas', value: 'design' },
-      { label: 'Organizing & structuring information', value: 'organize' },
+      { label: 'Building & creating things', value: 'building' },
+      { label: 'Solving complex puzzles & problems', value: 'problem-solving' },
+      { label: 'Designing & expressing ideas visually', value: 'creativity' },
+      { label: 'Helping or caring for others', value: 'helping' },
+      { label: 'Analyzing data and finding patterns', value: 'analyzing' },
+      { label: 'Leading and persuading people', value: 'leading' },
     ],
   },
   subject: {
-    prompt: 'Which subjects are you strongest in?',
+    prompt: 'Which subjects or areas are you strongest in?',
     options: [
-      { label: 'Math & Computer Science', value: 'cs' },
-      { label: 'Physics & Engineering', value: 'physics' },
-      { label: 'Art & Design', value: 'art' },
-      { label: 'Business & Economics', value: 'business' },
+      { label: 'Math & Computer Science', value: 'math and computer science' },
+      { label: 'Life Sciences (Biology, Chemistry)', value: 'life sciences' },
+      { label: 'Arts & Humanities', value: 'arts and humanities' },
+      { label: 'Business & Economics', value: 'business and economics' },
+      { label: 'Physical Sciences & Engineering', value: 'physical sciences' },
+      { label: 'Social Sciences & Communication', value: 'social sciences' },
     ],
   },
 };
@@ -60,7 +64,7 @@ export default function AnalyticsDashboard() {
       setRecommendation(result);
     } catch (e) {
       console.error(e);
-      setError('Sorry, the AI career counselor is unavailable at the moment.');
+      setError('Sorry, the AI career counselor is unavailable at the moment. Please try again.');
     } finally {
       setLoading(false);
       setStep(2);
@@ -85,20 +89,20 @@ export default function AnalyticsDashboard() {
         <RadioGroup
           onValueChange={(value) => handleAnswer(questionKey, value)}
           value={answers[questionKey]}
-          className="gap-4"
+          className="gap-4 grid grid-cols-1 sm:grid-cols-2"
         >
           {currentQuestion.options.map(option => (
-            <div key={option.value} className="flex items-center space-x-2">
+            <div key={option.value} className="flex items-center space-x-3">
               <RadioGroupItem value={option.value} id={`${questionKey}-${option.value}`} />
-              <Label htmlFor={`${questionKey}-${option.value}`} className="text-base cursor-pointer">
+              <Label htmlFor={`${questionKey}-${option.value}`} className="text-base font-normal cursor-pointer">
                 {option.label}
               </Label>
             </div>
           ))}
         </RadioGroup>
         <div className="flex justify-end pt-4">
-          <Button onClick={handleNext} disabled={!answers[questionKey]}>
-            {step < 1 ? 'Next' : 'Get Recommendation'} <ArrowRight className="ml-2 h-4 w-4" />
+          <Button onClick={handleNext} disabled={!answers[questionKey]} size="lg">
+            {step < 1 ? 'Next' : 'Get My Career Path'} <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -122,7 +126,8 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
         </div>
-        <p className="font-semibold text-lg animate-pulse">AI is generating your career path...</p>
+        <p className="font-semibold text-lg animate-pulse">AI is generating your personalized career path...</p>
+        <p className="text-sm text-muted-foreground">This may take a moment.</p>
     </div>
   );
 
@@ -142,39 +147,42 @@ export default function AnalyticsDashboard() {
         <div className="text-center border-b pb-6">
             <p className="text-muted-foreground">AI Recommended Career Path</p>
             <h3 className="text-3xl font-bold text-primary">{recommendation.careerField}</h3>
-            <p className="max-w-2xl mx-auto mt-2 text-muted-foreground">{recommendation.justification}</p>
+            <p className="max-w-3xl mx-auto mt-2 text-muted-foreground">{recommendation.justification}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-4 p-6 rounded-lg bg-background">
                 <h4 className="font-semibold text-lg flex items-center gap-2"><Zap className="h-5 w-5 text-accent-foreground fill-accent"/> In-Demand Skills</h4>
                 <div className="flex flex-wrap gap-2">
-                    {recommendation.inDemandSkills.map(skill => <Badge key={skill} variant="secondary" className="text-base">{skill}</Badge>)}
+                    {recommendation.inDemandSkills.map(skill => <Badge key={skill} variant="secondary" className="text-base px-3 py-1">{skill}</Badge>)}
                 </div>
             </div>
-             <div className="space-y-4">
-                <h4 className="font-semibold text-lg flex items-center gap-2"><Building className="h-5 w-5"/> Top Companies</h4>
+             <div className="space-y-4 p-6 rounded-lg bg-background">
+                <h4 className="font-semibold text-lg flex items-center gap-2"><Building className="h-5 w-5"/> Top Companies Hiring</h4>
                  <div className="flex flex-wrap gap-2">
-                    {recommendation.topCompanies.map(company => <Badge key={company} variant="outline" className="text-base">{company}</Badge>)}
+                    {recommendation.topCompanies.map(company => <Badge key={company} variant="outline" className="text-base px-3 py-1">{company}</Badge>)}
                 </div>
             </div>
         </div>
 
         <div>
-            <h4 className="font-semibold text-lg mb-4 flex items-center gap-2"><Route className="h-5 w-5"/> Your 4-Step Career Path</h4>
-            <div className="space-y-4 border-l-2 border-primary pl-6 ml-2">
+            <h4 className="font-semibold text-xl mb-6 text-center flex items-center justify-center gap-2"><Route className="h-6 w-6"/> Your 4-Step Career Roadmap</h4>
+            <div className="relative space-y-8">
+                <div className="absolute left-5 top-5 bottom-5 w-0.5 bg-border -translate-x-1/2 hidden md:block"></div>
                 {recommendation.careerPath.map((step, index) => (
-                    <div key={index} className="relative">
-                        <div className="absolute -left-[34px] top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-background"></div>
-                        <h5 className="font-bold">{step.title}</h5>
-                        <p className="text-muted-foreground">{step.description}</p>
+                    <div key={index} className="relative flex items-start gap-6">
+                        <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">{step.step}</div>
+                        <div className="bg-background p-4 rounded-lg flex-grow">
+                          <h5 className="font-bold text-lg">{step.title}</h5>
+                          <p className="text-muted-foreground mt-1">{step.description}</p>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
         
         <div className="text-center pt-6">
-            <Button onClick={handleReset} variant="outline">Start Over</Button>
+            <Button onClick={handleReset} variant="outline" size="lg">Start Over & Explore Another Path</Button>
         </div>
       </div>
     );
@@ -184,11 +192,11 @@ export default function AnalyticsDashboard() {
     <div className="space-y-8">
       <Card className="bg-secondary/30">
         <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-                <Lightbulb className="h-6 w-6 text-primary"/>
-                <span>Discover Your Path</span>
+            <CardTitle className="flex items-center gap-3 text-2xl">
+                <Sparkles className="h-7 w-7 text-primary"/>
+                <span>AI-Powered Career Counselor</span>
             </CardTitle>
-            <CardDescription>Answer a couple of questions to get a personalized, AI-driven career recommendation.</CardDescription>
+            <CardDescription className="text-base">Not sure where to start? Answer a couple of questions to get a personalized, AI-driven career roadmap for any field, anywhere in the world.</CardDescription>
         </CardHeader>
         <CardContent>
             {step < 2 && !loading && renderQuiz()}
