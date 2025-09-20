@@ -64,11 +64,10 @@ export default function SubmissionForm() {
                     />
                 </div>
 
-                <div className="relative">
-                    <Separator />
-                    <div className="absolute inset-0 flex items-center">
-                        <span className="bg-card px-2 text-sm text-muted-foreground">OR</span>
-                    </div>
+                <div className="relative flex items-center justify-center my-4">
+                    <Separator className="shrink" />
+                    <span className="bg-card px-2 text-sm text-muted-foreground">OR</span>
+                    <Separator className="shrink" />
                 </div>
 
                 <div className="space-y-2">
@@ -82,7 +81,7 @@ export default function SubmissionForm() {
                     />
                 </div>
                 
-                <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button type="submit" className="w-full">
                     Submit
                 </Button>
             </form>
