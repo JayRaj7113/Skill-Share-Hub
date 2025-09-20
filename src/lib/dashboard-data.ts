@@ -113,3 +113,48 @@ export const careerPaths: { [key: string]: CareerPath } = {
     ],
   },
 };
+
+export const careerQuiz = {
+  questions: {
+    interest: {
+      prompt: 'What kind of activities do you enjoy?',
+      options: [
+        { label: 'Building & creating things', value: 'build' },
+        { label: 'Solving complex problems', value: 'solve' },
+        { label: 'Helping or caring for others', value: 'help' },
+        { label: 'Organizing information & numbers', value: 'organize' },
+      ],
+    },
+    subject: {
+      prompt: 'Which subjects are you strong in?',
+      options: [
+        { label: 'Math & Physics', value: 'physics' },
+        { label: 'Biology & Chemistry', value: 'biology' },
+        { label: 'Economics & Business', value: 'business' },
+        { label: 'Arts & Humanities', value: 'humanities' },
+      ],
+    },
+  },
+  recommendations: {
+    'build-physics': {
+      title: 'Technology & Engineering',
+      description: 'You seem to enjoy constructing things and have a knack for the sciences. Fields like Software Engineering, Mechanical Engineering, or Data Science could be a great fit.'
+    },
+    'solve-physics': {
+        title: 'Technology & Engineering',
+        description: 'You enjoy tackling challenges and have a knack for the sciences. Fields like Software Engineering, Electrical Engineering, or Data Science could be a great fit.'
+    },
+    'help-biology': {
+      title: 'Healthcare / Medical',
+      description: 'Your passion for helping others combined with your strength in life sciences points towards a career in medicine, nursing, biotech research, or other healthcare professions.'
+    },
+    'organize-business': {
+      title: 'Finance & Accounting',
+      description: 'You have a talent for structure and numbers. Careers like Chartered Accountant, Financial Analyst, or Business Consultant could be right up your alley.'
+    },
+     'build-humanities': {
+      title: 'Design & Creative Arts',
+      description: 'You love creating and have a strong foundation in humanities. Look into UI/UX Design, Graphic Design, or Content Creation.'
+    },
+  },
+};

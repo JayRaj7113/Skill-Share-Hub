@@ -1,14 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { technologyTrends, trendingRoles, careerPaths } from '@/lib/dashboard-data';
+import { technologyTrends, trendingRoles, careerPaths, careerQuiz } from '@/lib/dashboard-data';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, Lightbulb } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 export default function AnalyticsDashboard() {
   const [selectedPath, setSelectedPath] = useState(careerPaths['Web Developer']);
+  const [interest, setInterest] = useState('');
+  const [subject, setSubject] = useState('');
 
   const chartData = technologyTrends.map(tech => ({
     name: tech.name,
@@ -21,13 +25,63 @@ export default function AnalyticsDashboard() {
     }
   };
 
+  const recommendedField = useMemo(() => {
+    if (!interest || !subject) return null;
+    return careerQuiz.recommendations[`${interest}-${subject}`] || null;
+  }, [interest, subject]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="lg:col-span-3">
+         <Card className="bg-secondary/30">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    <Lightbulb className="h-6 w-6 text-primary"/>
+                    <span>Discover Your Path</span>
+                </CardTitle>
+                <CardDescription>Answer a couple of questions to find a career field that might suit you.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="font-semibold mb-2">{careerQuiz.questions.interest.prompt}</h4>
+                         <RadioGroup onValueChange={setInterest} value={interest} className="gap-2">
+                            {careerQuiz.questions.interest.options.map(option => (
+                                <div key={option.value} className="flex items-center space-x-2">
+                                    <RadioGroupItem value={option.value} id={`interest-${option.value}`} />
+                                    <Label htmlFor={`interest-${option.value}`}>{option.label}</Label>
+                                </div>
+                            ))}
+                        </RadioGroup>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold mb-2">{careerQuiz.questions.subject.prompt}</h4>
+                        <RadioGroup onValueChange={setSubject} value={subject} className="gap-2">
+                           {careerQuiz.questions.subject.options.map(option => (
+                                <div key={option.value} className="flex items-center space-x-2">
+                                    <RadioGroupItem value={option.value} id={`subject-${option.value}`} />
+                                    <Label htmlFor={`subject-${option.value}`}>{option.label}</Label>
+                                </div>
+                            ))}
+                        </RadioGroup>
+                    </div>
+                </div>
+                {recommendedField && (
+                    <div className="pt-4 border-t">
+                        <h4 className="font-semibold text-lg">Recommended Field:</h4>
+                        <p className="text-xl text-primary font-bold">{recommendedField.title}</p>
+                        <p className="text-muted-foreground">{recommendedField.description}</p>
+                    </div>
+                )}
+            </CardContent>
+        </Card>
+      </div>
+
       <div className="lg:col-span-2 space-y-8">
         <Card>
           <CardHeader>
-            <CardTitle>In-Demand Technologies</CardTitle>
-            <CardDescription>Based on the number of project postings.</CardDescription>
+            <CardTitle>In-Demand Technologies (Example: Engineering)</CardTitle>
+            <CardDescription>Based on the number of project postings in the tech field.</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -49,7 +103,7 @@ export default function AnalyticsDashboard() {
         
         <Card>
           <CardHeader>
-            <CardTitle>Suggested Career Path</CardTitle>
+            <CardTitle>Suggested Career Path (Example: Web Developer)</CardTitle>
             <CardDescription>{selectedPath.description}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -75,7 +129,7 @@ export default function AnalyticsDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5 text-accent-foreground fill-accent" />
-              <span>Trending Roles</span>
+              <span>Trending Tech Roles</span>
             </CardTitle>
             <CardDescription>Click a role to see a suggested path.</CardDescription>
           </CardHeader>
