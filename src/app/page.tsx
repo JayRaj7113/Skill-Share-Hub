@@ -75,14 +75,14 @@ export default function Home() {
             />
             <HowItWorksStep
               step={2}
-              title="Post & Find Projects"
-              description="Companies post projects they need help with, and students browse opportunities that match their skills."
+              title="Post or Contribute"
+              description="Organizations post projects they need help with, and students browse opportunities that match their skills and contribute."
               image={hiw2}
             />
             <HowItWorksStep
               step={3}
               title="Collaborate & Grow"
-              description="Students work on real-world projects, submit their work, and gain invaluable experience."
+              description="Students work on real-world projects, submit their work, and gain invaluable experience with pre-defined rewards."
               image={hiw3}
             />
           </div>
